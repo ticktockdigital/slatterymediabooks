@@ -1,0 +1,42 @@
+<div class="smg-contact">
+  <div class="smg-container">
+    {%- if section.settings.heading != blank -%}
+      <h3 class="smg-heading">{{ section.settings.heading }}</h3>
+    {%- endif -%}
+    <div class="smg-contact__detail">
+      {%- if section.settings.email != blank -%}
+        <p>
+          <a href="mailto:{{ section.settings.email }}">{{ section.settings.email }}</a>
+        </p>
+      {%- endif -%}
+      {{ section.settings.text }}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Contact band",
+  "class": "smg-contact-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Contact Us"
+    },
+    {
+      "type": "text",
+      "id": "email",
+      "label": "Email",
+      "default": "askus@slatterymedia.com"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Additional text"
+    }
+  ],
+  "presets": [{ "name": "Contact band" }]
+}
+{% endschema %}

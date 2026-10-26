@@ -1,0 +1,41 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "our_titles": {
+      "type": "smg-book-grid",
+      "settings": {
+        "heading": "Our Titles",
+        "collection": "our-titles",
+        "anchor": "bestsellers",
+        "limit": 48,
+        "paginate": false,
+        "columns": 6,
+        "columns_mobile": 2
+      }
+    },
+    "on_sale": {
+      "type": "smg-book-grid",
+      "settings": {
+        "heading": "On Sale",
+        "collection": "sale",
+        "anchor": "sale",
+        "limit": 12,
+        "paginate": false,
+        "columns": 6,
+        "columns_mobile": 2
+      }
+    }
+  },
+  "order": [
+    "our_titles",
+    "on_sale"
+  ]
+}

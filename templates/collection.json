@@ -1,0 +1,28 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "smg-book-grid",
+      "settings": {
+        "heading": "",
+        "collection": "",
+        "anchor": "",
+        "limit": 48,
+        "paginate": true,
+        "columns": 6,
+        "columns_mobile": 2
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

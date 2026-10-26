@@ -1,0 +1,50 @@
+<footer class="smg-footer">
+  <div class="smg-container">
+    <p class="smg-footer__logo">
+      {%- if section.settings.logo != blank -%}
+        {{ section.settings.logo | image_url: width: 400 | image_tag: alt: shop.name, height: 50 }}
+      {%- else -%}
+        <img src="{{ 'smg-logo-black.png' | asset_url }}" alt="{{ shop.name | escape }}" width="135" height="50" loading="lazy">
+      {%- endif -%}
+    </p>
+
+    {%- if section.settings.menu.links.size > 0 -%}
+      <p>
+        {%- for link in section.settings.menu.links -%}
+          <a href="{{ link.url }}">{{ link.title }}</a>
+          {%- unless forloop.last %} | {% endunless -%}
+        {%- endfor -%}
+      </p>
+    {%- endif -%}
+
+    <p>&copy; {{ 'now' | date: '%Y' }} {{ section.settings.copyright }}</p>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Legal footer",
+  "class": "smg-footer-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo",
+      "info": "Defaults to the black Slattery Media Group logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "footer"
+    },
+    {
+      "type": "text",
+      "id": "copyright",
+      "label": "Copyright text",
+      "default": "The Slattery Media Group ABN: 57 217 020 071. All rights reserved."
+    }
+  ],
+  "presets": [{ "name": "Legal footer" }]
+}
+{% endschema %}

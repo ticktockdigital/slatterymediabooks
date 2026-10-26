@@ -1,0 +1,27 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "smg-main-product",
+      "settings": {
+        "show_download": true,
+        "enquiries_heading": "Media Enquiries",
+        "enquiries": "<p>To request a press release, review copy, author image or to organise an extract or interview.</p><p>Phone: (03) 8459 2289<br/>Email: askus@slatterymedia.com</p>",
+        "featured_heading": "Featured books",
+        "featured_collection": "our-titles",
+        "featured_limit": 3
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

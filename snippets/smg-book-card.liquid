@@ -1,0 +1,25 @@
+{%- doc -%}
+  Renders a book card: cover aligned to the bottom of a fixed-height area, title, and price bar.
+
+  @param {product} product - The product
+  @param {boolean} [compact] - Let the cover set its own height (sidebar use)
+{%- enddoc -%}
+<div class="smg-book{% if compact %} smg-book--compact{% endif %}">
+  <a class="smg-book__cover" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+    {%- if product.featured_image -%}
+      {{
+        product.featured_image
+        | image_url: width: 600
+        | image_tag:
+          loading: 'lazy',
+          widths: '200, 300, 400, 600',
+          sizes: '(min-width: 990px) 170px, 45vw',
+          alt: product.title
+      }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag }}
+    {%- endif -%}
+  </a>
+  <h4 class="smg-book__title"><a href="{{ product.url }}">{{ product.title }}</a></h4>
+  {% render 'smg-price-bar', product: product %}
+</div>

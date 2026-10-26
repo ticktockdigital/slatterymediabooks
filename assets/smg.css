@@ -1,0 +1,443 @@
+/*
+ * Slattery Media Group bookstore styles.
+ * Recreates the look of the legacy books.slatterymedia.com site on top of Horizon.
+ */
+
+@font-face {
+  font-family: 'Amplitude';
+  src: url('amplitude-light.woff') format('woff');
+  font-weight: 300;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Amplitude';
+  src: url('amplitude-book.woff') format('woff');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Amplitude';
+  src: url('amplitude-regular.woff') format('woff');
+  font-weight: 500;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Amplitude';
+  src: url('amplitude-medium.woff') format('woff');
+  font-weight: 600;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Amplitude';
+  src: url('amplitude-bold.woff') format('woff');
+  font-weight: 700;
+  font-display: swap;
+}
+
+:root {
+  --smg-green: #86be4c;
+  --smg-pink: #cc3078;
+  --smg-grey: #e7e7e7;
+  --smg-text: #333333;
+  --smg-link: #428bca;
+  --smg-container: 1170px;
+
+  /* Overrides the theme font settings: Amplitude isn't in Shopify's font library.
+     Headings are serif because the legacy site's "museo" Typekit kit no longer loads. */
+  --font-body--family: 'Amplitude', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-body--weight: 400;
+  --font-subheading--family: var(--font-body--family);
+  --font-heading--family: 'Times New Roman', Times, serif;
+  --font-heading--weight: 400;
+  --narrow-page-width: var(--smg-container);
+}
+
+.smg-container {
+  max-width: var(--smg-container);
+  margin-inline: auto;
+  padding-inline: 15px;
+}
+
+/* ---------- Header ---------- */
+
+.header .menu-list__link:hover {
+  color: #000;
+}
+
+.smg-shipping-bar {
+  background: var(--smg-green);
+  color: #fff;
+  padding-block: 10px 20px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.smg-shipping-bar p {
+  margin: 0;
+}
+
+.smg-shipping-bar small {
+  font-size: 12px;
+}
+
+/* ---------- Banner ---------- */
+
+.smg-banner {
+  position: relative;
+  height: var(--smg-banner-height, 450px);
+  overflow: hidden;
+  background: var(--smg-grey);
+}
+
+.smg-banner__slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.smg-banner__slide.is-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.smg-banner__slide img,
+.smg-banner__slide svg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+@media screen and (max-width: 749px) {
+  .smg-banner {
+    height: var(--smg-banner-height-mobile, 200px);
+  }
+}
+
+/* ---------- Section headings ---------- */
+
+.smg-heading {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.1;
+  color: var(--smg-text);
+  padding: 20px 0;
+  margin: 30px 0;
+  border-bottom: 1px solid var(--smg-green);
+}
+
+/* ---------- Book grid ---------- */
+
+.smg-book-grid {
+  padding-top: 60px;
+  color: var(--smg-text);
+}
+
+.smg-book-grid + .smg-book-grid {
+  padding-top: 0;
+}
+
+.smg-book-grid__list {
+  display: grid;
+  grid-template-columns: repeat(var(--smg-columns-mobile, 2), minmax(0, 1fr));
+  gap: 40px 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 750px) {
+  .smg-book-grid__list {
+    grid-template-columns: repeat(var(--smg-columns, 6), minmax(0, 1fr));
+  }
+}
+
+.smg-book {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+}
+
+.smg-book__cover {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 230px;
+}
+
+.smg-book__cover img,
+.smg-book__cover svg {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+.smg-book__title {
+  font-family: var(--font-body--family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+  margin: 8px 0 20px;
+  flex-grow: 1;
+}
+
+.smg-book__title a {
+  color: #000;
+  text-decoration: none;
+}
+
+.smg-book--compact .smg-book__cover {
+  height: auto;
+}
+
+.smg-book--compact .smg-book__cover img {
+  max-width: 80%;
+}
+
+/* ---------- Price bar ---------- */
+
+.smg-price-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid var(--smg-green);
+  border-bottom: 1px solid var(--smg-green);
+  padding: 6px 0;
+  color: var(--smg-green);
+  text-align: left;
+  font-size: 16px;
+}
+
+.smg-price-bar form {
+  margin: 0;
+}
+
+.smg-price-bar__buy {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: var(--smg-green);
+  cursor: pointer;
+}
+
+.smg-price-bar__buy:hover {
+  color: #000;
+}
+
+.smg-price-bar__buy[disabled] {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.smg-price-bar__was {
+  flex-basis: 100%;
+  font-size: 12px;
+}
+
+.smg-on-sale {
+  display: block;
+  background: var(--smg-pink);
+  color: #fff;
+  text-align: center;
+  line-height: 2.6em;
+  border-radius: 2.6em;
+  margin: 1em 0;
+}
+
+/* ---------- Product page ---------- */
+
+.smg-product {
+  padding-top: 60px;
+  color: var(--smg-text);
+}
+
+.smg-product__grid {
+  display: grid;
+  gap: 30px;
+}
+
+@media screen and (min-width: 990px) {
+  .smg-product__grid {
+    grid-template-columns: 3fr 7fr 2fr;
+  }
+}
+
+.smg-product__cover img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.smg-product__cover {
+  padding-inline: 10px;
+  margin-bottom: 20px;
+}
+
+.smg-product__download {
+  text-align: center;
+  margin: 20px 0 10px;
+}
+
+.smg-product__download a {
+  display: inline-block;
+  padding: 6px 18px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: var(--smg-text);
+  background: #fff;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.smg-product__download a:hover {
+  background: #e6e6e6;
+}
+
+.smg-details {
+  margin: 0;
+  padding-top: 14px;
+  font-size: 14px;
+}
+
+.smg-details__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  border-bottom: 1px solid #3d3d3d;
+  padding: 10px 0;
+  margin: 0 0 4px;
+}
+
+.smg-details dt {
+  font-weight: 600;
+}
+
+.smg-details dd {
+  margin: 0;
+  text-align: right;
+}
+
+.smg-product__enquiries {
+  margin-top: 80px;
+  font-size: 12px;
+}
+
+.smg-product__enquiries h4 {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 18px;
+  margin: 0;
+}
+
+.smg-product__enquiries p {
+  margin: 0 0 10px;
+}
+
+.smg-product__title {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 1.1;
+  margin: 0 0 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--smg-green);
+}
+
+.smg-product__body {
+  font-size: 16px;
+  line-height: 1.45;
+}
+
+.smg-product__body p {
+  margin: 0 0 10px;
+}
+
+.smg-product__body a {
+  color: var(--smg-link);
+  text-decoration: none;
+}
+
+.smg-product__body a:hover {
+  text-decoration: underline;
+}
+
+.smg-product__body h3 {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 24px;
+  padding: 10px 0;
+  margin: 30px 0 20px;
+  border-bottom: 1px solid var(--smg-green);
+}
+
+.smg-product__body h4 {
+  font-family: var(--font-heading--family);
+  font-weight: 400;
+  font-size: 18px;
+  margin: 20px 0 10px;
+}
+
+.smg-product__sidebar .smg-heading {
+  font-size: 18px;
+  margin: 0 0 30px;
+  padding: 0 0 10px;
+  line-height: 33px;
+}
+
+.smg-product__sidebar .smg-book {
+  margin-bottom: 30px;
+  height: auto;
+}
+
+/* ---------- Contact band & footer ---------- */
+
+.smg-contact {
+  background: var(--smg-grey);
+  color: var(--smg-text);
+  padding: 30px 0 40px;
+  margin-top: 40px;
+}
+
+.smg-contact .smg-heading {
+  border: 0;
+  margin: 0;
+  padding: 0 0 20px;
+}
+
+.smg-contact__detail a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.smg-footer {
+  background: var(--smg-grey);
+  color: var(--smg-text);
+  text-align: center;
+  padding-bottom: 20px;
+  font-size: 16px;
+}
+
+.smg-footer__logo img {
+  height: 50px;
+  width: auto;
+  margin: 20px auto 10px;
+}
+
+.smg-footer p {
+  margin: 0 0 10px;
+}
+
+.smg-footer a {
+  color: var(--smg-link);
+  text-decoration: none;
+}
+
+.smg-footer a:hover {
+  text-decoration: underline;
+}

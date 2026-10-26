@@ -1,0 +1,145 @@
+<script type="application/ld+json">
+  {{ product | structured_data }}
+</script>
+
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign book = product.metafields.book
+  assign isbn = book.isbn.value | default: variant.barcode
+-%}
+
+<div class="smg-product">
+  <div class="smg-container smg-product__grid">
+    <div class="smg-product__info">
+      {%- if product.featured_image -%}
+        <div class="smg-product__cover">
+          {{
+            product.featured_image
+            | image_url: width: 900
+            | image_tag:
+              widths: '300, 450, 600, 900',
+              sizes: '(min-width: 990px) 270px, 90vw',
+              alt: product.title,
+              fetchpriority: 'high'
+          }}
+          {%- if variant.compare_at_price > variant.price -%}
+            <span class="smg-on-sale">ON SALE</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {% render 'smg-price-bar', product: product %}
+
+      {%- if section.settings.show_download and product.featured_image -%}
+        <div class="smg-product__download">
+          <a href="{{ product.featured_image | image_url: width: 5760 }}" target="_blank" rel="noopener">
+            Download Cover
+          </a>
+        </div>
+      {%- endif -%}
+
+      <dl class="smg-details">
+        {%- if book.published != blank -%}
+          <div class="smg-details__row"><dt>Published</dt><dd>{{ book.published.value }}</dd></div>
+        {%- endif -%}
+        {%- if book.format != blank -%}
+          <div class="smg-details__row"><dt>Format</dt><dd>{{ book.format.value }}</dd></div>
+        {%- endif -%}
+        {%- if book.pages != blank -%}
+          <div class="smg-details__row"><dt>Pages</dt><dd>{{ book.pages.value }}</dd></div>
+        {%- endif -%}
+        {%- if isbn != blank -%}
+          <div class="smg-details__row"><dt>ISBN</dt><dd>{{ isbn }}</dd></div>
+        {%- endif -%}
+        {%- if book.size != blank -%}
+          <div class="smg-details__row"><dt>Size</dt><dd>{{ book.size.value }}</dd></div>
+        {%- endif -%}
+        {%- if book.weight != blank -%}
+          <div class="smg-details__row"><dt>Weight</dt><dd>{{ book.weight.value }}</dd></div>
+        {%- endif -%}
+      </dl>
+
+      {%- if section.settings.enquiries != blank -%}
+        <div class="smg-product__enquiries">
+          {%- if section.settings.enquiries_heading != blank -%}
+            <h4>{{ section.settings.enquiries_heading }}</h4>
+          {%- endif -%}
+          {{ section.settings.enquiries }}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="smg-product__detail">
+      <h1 class="smg-product__title">{{ product.title }}</h1>
+      <div class="smg-product__body">
+        {{ product.description }}
+      </div>
+    </div>
+
+    {%- if section.settings.featured_collection != blank -%}
+      <aside class="smg-product__sidebar">
+        {%- if section.settings.featured_heading != blank -%}
+          <h4 class="smg-heading">{{ section.settings.featured_heading }}</h4>
+        {%- endif -%}
+        {%- assign shown = 0 -%}
+        {%- for item in section.settings.featured_collection.products -%}
+          {%- if item.id != product.id and shown < section.settings.featured_limit -%}
+            {% render 'smg-book-card', product: item, compact: true %}
+            {%- assign shown = shown | plus: 1 -%}
+          {%- endif -%}
+        {%- endfor -%}
+      </aside>
+    {%- endif -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Book details",
+  "class": "smg-main-product-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_download",
+      "label": "Show \"Download Cover\" button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "enquiries_heading",
+      "label": "Media enquiries heading",
+      "default": "Media Enquiries"
+    },
+    {
+      "type": "richtext",
+      "id": "enquiries",
+      "label": "Media enquiries text",
+      "default": "<p>To request a press release, review copy, author image or to organise an extract or interview.</p><p>Phone: (03) 8459 2289<br/>Email: askus@slatterymedia.com</p>"
+    },
+    {
+      "type": "header",
+      "content": "Sidebar"
+    },
+    {
+      "type": "text",
+      "id": "featured_heading",
+      "label": "Heading",
+      "default": "Featured books"
+    },
+    {
+      "type": "collection",
+      "id": "featured_collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "featured_limit",
+      "label": "Books to show",
+      "min": 1,
+      "max": 6,
+      "step": 1,
+      "default": 3
+    }
+  ]
+}
+{% endschema %}
