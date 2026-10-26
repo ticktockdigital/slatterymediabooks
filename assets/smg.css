@@ -79,6 +79,11 @@
   line-height: 1.4;
 }
 
+/* Horizon caps this at 680px, which breaks the shipping message mid-sentence */
+.announcement-bar .announcement-bar__slides {
+  max-width: 960px;
+}
+
 /* ---------- Banner ---------- */
 
 .smg-banner {
