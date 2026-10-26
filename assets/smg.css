@@ -75,20 +75,8 @@
   color: #000;
 }
 
-.smg-shipping-bar {
-  background: var(--smg-green);
-  color: #fff;
-  padding-block: 10px 20px;
-  font-size: 16px;
+.announcement-bar .announcement-bar__text {
   line-height: 1.4;
-}
-
-.smg-shipping-bar p {
-  margin: 0;
-}
-
-.smg-shipping-bar p + p {
-  font-size: 12px;
 }
 
 /* ---------- Banner ---------- */

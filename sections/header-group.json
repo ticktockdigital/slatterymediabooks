@@ -76,12 +76,6 @@
         "bubble_text_color": "#86be4c"
       }
     },
-    "shipping_bar": {
-      "type": "smg-shipping-bar",
-      "settings": {
-        "text": "<p>Free shipping Australia wide with every book order over $50!*</p><p>* Some items excluded, these are clearly marked in the item's description</p>"
-      }
-    },
     "banner": {
       "type": "smg-banner",
       "blocks": {
@@ -103,11 +97,41 @@
         "height_mobile": 200,
         "interval": 10
       }
+    },
+    "announcement_bar": {
+      "type": "header-announcements",
+      "blocks": {
+        "announcement_shipping": {
+          "type": "_announcement",
+          "settings": {
+            "text": "Free shipping Australia wide with every book order over $50!* * Some items excluded, these are clearly marked in the item's description",
+            "font": "var(--font-body--family)",
+            "font_size": "0.875rem",
+            "weight": "",
+            "letter_spacing": "normal",
+            "case": "none",
+            "text_color": "#ffffff"
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "announcement_shipping"
+      ],
+      "name": "t:names.announcement_bar",
+      "settings": {
+        "speed": 5,
+        "section_width": "page-width",
+        "background_color": "#86be4c",
+        "divider_width": 0,
+        "padding-block-start": 12,
+        "padding-block-end": 12
+      }
     }
   },
   "order": [
     "header_section",
-    "shipping_bar",
+    "announcement_bar",
     "banner"
   ]
 }
