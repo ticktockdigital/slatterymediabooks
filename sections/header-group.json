@@ -110,7 +110,7 @@
             "weight": "",
             "letter_spacing": "normal",
             "case": "none",
-            "text_color": "#ffffff"
+            "text_color": "#333333"
           },
           "blocks": {}
         }
@@ -122,7 +122,7 @@
       "settings": {
         "speed": 5,
         "section_width": "page-width",
-        "background_color": "#86be4c",
+        "background_color": "#e7e7e7",
         "divider_width": 0,
         "padding-block-start": 12,
         "padding-block-end": 12
