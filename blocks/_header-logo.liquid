@@ -57,14 +57,26 @@
     {% endif %}
     data-testid="header-logo"
   >
-    {% render 'image',
-      image: settings.logo,
-      class: 'header-logo__image',
-      height: settings.logo_height,
-      alt_text_fallback: alt_text_fallback,
-      text_fallback: shop.name,
-      style: logo_style
-    %}
+    {% if settings.logo == blank %}
+      {% comment %} Slattery Media Group: bundled SVG logo until one is uploaded in theme settings {% endcomment %}
+      <img
+        src="{{ 'smg-logo-white.svg' | asset_url }}"
+        alt="{{ alt_text_fallback | escape }}"
+        class="header-logo__image smg-header-logo"
+        width="1521"
+        height="245"
+        style="--smg-logo-height: {{ settings.logo_height }}px; --smg-logo-height-mobile: {{ settings.logo_height_mobile }}px;"
+      >
+    {% else %}
+      {% render 'image',
+        image: settings.logo,
+        class: 'header-logo__image',
+        height: settings.logo_height,
+        alt_text_fallback: alt_text_fallback,
+        text_fallback: shop.name,
+        style: logo_style
+      %}
+    {% endif %}
   </span>
 
   {% if use_inverse_logo %}

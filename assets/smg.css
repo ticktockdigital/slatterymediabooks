@@ -42,12 +42,11 @@
   --smg-link: #428bca;
   --smg-container: 1170px;
 
-  /* Overrides the theme font settings: Amplitude isn't in Shopify's font library.
-     Headings are serif because the legacy site's "museo" Typekit kit no longer loads. */
+  /* Overrides the theme font settings: Amplitude isn't in Shopify's font library. */
   --font-body--family: 'Amplitude', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --font-body--weight: 400;
   --font-subheading--family: var(--font-body--family);
-  --font-heading--family: 'Times New Roman', Times, serif;
+  --font-heading--family: var(--font-body--family);
   --font-heading--weight: 400;
   --narrow-page-width: var(--smg-container);
 }
@@ -59,6 +58,18 @@
 }
 
 /* ---------- Header ---------- */
+
+.header-logo .smg-header-logo {
+  height: var(--smg-logo-height-mobile);
+  width: auto;
+  max-width: none;
+}
+
+@media screen and (min-width: 750px) {
+  .header-logo .smg-header-logo {
+    height: var(--smg-logo-height);
+  }
+}
 
 .header .menu-list__link:hover {
   color: #000;

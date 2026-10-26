@@ -1,11 +1,7 @@
 {%- liquid
-  assign source = section.settings.collection
-  if source == blank and collection
-    assign source = collection
-  endif
   assign heading = section.settings.heading
-  if heading == blank and source
-    assign heading = source.title
+  if heading == blank
+    assign heading = section.settings.collection.title | default: collection.title
   endif
 -%}
 
@@ -19,16 +15,22 @@
       <h3 class="smg-heading">{{ heading }}</h3>
     {%- endif -%}
 
-    {%- if source -%}
-      {%- paginate source.products by section.settings.limit -%}
-        <ul class="smg-book-grid__list">
-          {%- for product in source.products -%}
-            <li>{% render 'smg-book-card', product: product %}</li>
-          {%- endfor -%}
-        </ul>
-        {%- if section.settings.paginate and paginate.pages > 1 -%}
-          {% render 'pagination-controls', paginate: paginate %}
-        {%- endif -%}
+    {%- comment -%} paginate only accepts the drop directly, not an assigned variable {%- endcomment -%}
+    {%- if section.settings.collection != blank -%}
+      {%- paginate section.settings.collection.products by section.settings.limit -%}
+        {% render 'smg-book-list',
+          products: section.settings.collection.products,
+          paginate: paginate,
+          show_pagination: section.settings.paginate
+        %}
+      {%- endpaginate -%}
+    {%- elsif collection -%}
+      {%- paginate collection.products by section.settings.limit -%}
+        {% render 'smg-book-list',
+          products: collection.products,
+          paginate: paginate,
+          show_pagination: section.settings.paginate
+        %}
       {%- endpaginate -%}
     {%- elsif request.design_mode -%}
       <ul class="smg-book-grid__list">

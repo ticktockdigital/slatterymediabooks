@@ -1,0 +1,15 @@
+{%- doc -%}
+  Renders a grid of book cards with optional pagination controls.
+
+  @param {product[]} products - The products to list
+  @param {object} paginate - The paginate object
+  @param {boolean} [show_pagination] - Show pagination controls when there is more than one page
+{%- enddoc -%}
+<ul class="smg-book-grid__list">
+  {%- for product in products -%}
+    <li>{% render 'smg-book-card', product: product %}</li>
+  {%- endfor -%}
+</ul>
+{%- if show_pagination and paginate.pages > 1 -%}
+  {% render 'pagination-controls', paginate: paginate %}
+{%- endif -%}
