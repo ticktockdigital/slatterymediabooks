@@ -76,7 +76,7 @@
   margin: 0;
 }
 
-.smg-shipping-bar small {
+.smg-shipping-bar p + p {
   font-size: 12px;
 }
 

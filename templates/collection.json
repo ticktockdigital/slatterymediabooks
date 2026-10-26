@@ -18,7 +18,7 @@
         "limit": 48,
         "paginate": true,
         "columns": 6,
-        "columns_mobile": 2
+        "columns_mobile": "2"
       }
     }
   },

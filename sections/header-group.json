@@ -79,7 +79,7 @@
     "shipping_bar": {
       "type": "smg-shipping-bar",
       "settings": {
-        "text": "<p>Free shipping Australia wide with every book order over $50!*</p><p><small>* Some items excluded, these are clearly marked in the item's description</small></p>"
+        "text": "<p>Free shipping Australia wide with every book order over $50!*</p><p>* Some items excluded, these are clearly marked in the item's description</p>"
       }
     },
     "banner": {
