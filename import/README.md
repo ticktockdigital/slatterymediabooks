@@ -4,11 +4,15 @@ Scraped from the live site on 27 Oct 2026: 48 books (45 in "Our Titles", 3 on sa
 
 ## Order of operations
 
-1. **Create metafield definitions first** (Settings → Custom data → Products), all *Single line text*,
-   namespace `book`: `isbn`, `author`, `format`, `published`, `pages`, `size`, `weight`.
-   The CSV import skips metafield columns that have no definition.
-2. **Import `shopify-products.csv`** (Products → Import). Cover images are pulled from the
-   old site's URLs, so import while books.slatterymedia.com is still online.
+1. **Import `1-products.csv`** (Products → Import). Leave "Overwrite products with matching handles"
+   unticked. Cover images are pulled from the old site's URLs, so import while
+   books.slatterymedia.com is still online.
+2. **Import `2-product-metafields.csv`** for the book details (Author, Format, Published, Pages,
+   Size, plus ISBN and Weight as display text). First create the metafield definitions
+   (Settings → Metafields and metaobjects → Products), all *Single line text*, namespace `book`:
+   `isbn`, `author`, `format`, `published`, `pages`, `size`, `weight`. Then Products → Import with
+   **"Overwrite products with matching handles" ticked**. The file only has Handle + metafield
+   columns, so nothing else on the products changes.
 3. **Create two automated collections:**
    - `Our Titles` (handle `our-titles`): Type = Book AND Tag ≠ Sale, sort "Date, new to old"
    - `Sale` (handle `sale`): Tag = Sale
